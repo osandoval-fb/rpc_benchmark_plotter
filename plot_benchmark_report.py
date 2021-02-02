@@ -29,13 +29,13 @@ def main():
     x_axis_labels = [benchmark_run[x_axis_name] for benchmark_run in benchmark_results]
     label_location = np.arange(len(x_axis_labels))
 
-    for benchmark_metric in ['agent throughput', 'observer throughput', 'agent latency', 'observer latency']:
+    for benchmark_metric in ['agent throughput', 'observer throughput', 'agent latency (seconds)', 'observer latency (seconds)']:
         fig, ax = plt.subplots()
         p50s = []
         p95s = []
         for i in range(len(x_axis_labels)):
-            p50s.append(benchmark_results[i][benchmark_metric]['50'])
-            p95s.append(benchmark_results[i][benchmark_metric]['95'])
+            p50s.append(benchmark_results[i][benchmark_metric]['p50'])
+            p95s.append(benchmark_results[i][benchmark_metric]['p95'])
 
         y1 = ax.bar(label_location - bar_width / 2, p50s, bar_width, label='p50')
         y2 = ax.bar(label_location + bar_width / 2, p95s, bar_width, label='p95')
